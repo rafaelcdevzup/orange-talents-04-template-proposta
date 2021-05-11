@@ -22,6 +22,10 @@ public class PropostaRequest {
     @NotNull @Positive
     private BigDecimal salario;
     
+    /*@Deprecated
+    public PropostaRequest(){
+    
+    }*/
     
     public PropostaRequest(@NotBlank String documento, @NotBlank @Email String email, @NotBlank String endereco,
             @NotBlank String nome, @NotNull @Positive BigDecimal salario) {
@@ -34,5 +38,13 @@ public class PropostaRequest {
 
     public Proposta toModel() {
         return new Proposta(this.documento,this.email,this.nome,this.endereco,this.salario);
-    }  
+    }
+
+    public String getEndereco(){
+        return endereco;
+    }
+
+    public String getDocumento() {
+        return documento;
+    }
 }

@@ -2,6 +2,7 @@ package com.rafazup.bootcamp.proposta;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,15 +16,17 @@ public class Proposta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true)
     private String documento;
     private String email;
     private String nome;
     private String endereco;
     private BigDecimal salario;
    
-/*@Deprecated
+    @Deprecated
     public Proposta(){
-    }*/
+    
+    }
 
     public Proposta(String documento, String email, String nome, String endereco, BigDecimal salario) {
         this.documento = documento;
@@ -35,6 +38,10 @@ public class Proposta {
 
     public Long getId() {
         return id;
+    }
+
+    public String getDocumento(){
+        return documento;
     }
     
 }

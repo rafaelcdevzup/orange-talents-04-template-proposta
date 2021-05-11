@@ -1,6 +1,7 @@
 package com.rafazup.bootcamp.proposta;
 
 import java.net.URI;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
@@ -24,6 +25,10 @@ public class PropostaController {
     @Transactional
     public ResponseEntity<PropostaRequest> insert(@RequestBody @Valid PropostaRequest request){
         Proposta proposta = request.toModel();
+        Optional<Proposta> verificarProposta =  propostaRepository.findByDocumento(request.getDocumento());
+        if(verificarProposta.isPresent()){
+            return ResponseEntity.unprocessableEntity().build();
+        }
         propostaRepository.save(proposta);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(proposta.getId()).toUri();
         return ResponseEntity.created(uri).build();
