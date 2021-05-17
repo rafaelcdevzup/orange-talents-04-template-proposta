@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,7 +14,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tb_proposta")
 public class Proposta {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,26 +24,36 @@ public class Proposta {
     private String nome;
     private String endereco;
     private BigDecimal salario;
-   
+    @Enumerated(EnumType.STRING)
+    private StatusProposta statusProposta;
+
     @Deprecated
-    public Proposta(){
-    
+    public Proposta() {
+
     }
 
-    public Proposta(String documento, String email, String nome, String endereco, BigDecimal salario) {
+    public Proposta(String documento, String email, String nome, String endereco, BigDecimal salario, StatusProposta statusProposta) {
         this.documento = documento;
         this.email = email;
         this.nome = nome;
         this.endereco = endereco;
         this.salario = salario;
+        this.statusProposta = statusProposta;
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getDocumento(){
+    public String getDocumento() {
         return documento;
     }
-    
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setStatusProposta(StatusProposta statusProposta) {
+        this.statusProposta = statusProposta;
+    }
 }

@@ -21,6 +21,7 @@ public class PropostaRequest {
     private String nome;
     @NotNull @Positive
     private BigDecimal salario;
+    private StatusProposta statusProposta;
     
     /*@Deprecated
     public PropostaRequest(){
@@ -28,16 +29,17 @@ public class PropostaRequest {
     }*/
     
     public PropostaRequest(@NotBlank String documento, @NotBlank @Email String email, @NotBlank String endereco,
-            @NotBlank String nome, @NotNull @Positive BigDecimal salario) {
+            @NotBlank String nome, @NotNull @Positive BigDecimal salario, StatusProposta statusProposta) {
         this.documento = documento;
         this.email = email;
         this.endereco = endereco;
         this.nome = nome;
         this.salario = salario;
+        this.statusProposta = statusProposta;
     }
 
     public Proposta toModel() {
-        return new Proposta(this.documento,this.email,this.nome,this.endereco,this.salario);
+        return new Proposta(this.documento,this.email,this.nome,this.endereco,this.salario, this.statusProposta);
     }
 
     public String getEndereco(){

@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PropostaRepository extends JpaRepository<Proposta, Long> {
 
-    Optional<Proposta> findByDocumento(String documento);
-    
+    //Optional<Proposta> findByDocumento(String documento);
+    boolean existsByDocumento(String documento);
 }
