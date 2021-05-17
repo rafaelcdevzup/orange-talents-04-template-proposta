@@ -1,7 +1,6 @@
 package com.rafazup.bootcamp.proposta;
 
 import java.net.URI;
-import java.util.Optional;
 import javax.validation.Valid;
 
 import com.rafazup.bootcamp.proposta.analisesolicitacao.AnalisePropostaRequest;
