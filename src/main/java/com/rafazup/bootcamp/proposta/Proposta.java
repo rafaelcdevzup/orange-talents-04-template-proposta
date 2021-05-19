@@ -26,13 +26,16 @@ public class Proposta {
     private BigDecimal salario;
     @Enumerated(EnumType.STRING)
     private StatusProposta statusProposta;
+    @Column(unique = true)
+    private String idCartao;
 
     @Deprecated
     public Proposta() {
 
     }
 
-    public Proposta(String documento, String email, String nome, String endereco, BigDecimal salario, StatusProposta statusProposta) {
+    public Proposta(String documento, String email, String nome, String endereco, BigDecimal salario,
+            StatusProposta statusProposta) {
         this.documento = documento;
         this.email = email;
         this.nome = nome;
@@ -55,5 +58,13 @@ public class Proposta {
 
     public void setStatusProposta(StatusProposta statusProposta) {
         this.statusProposta = statusProposta;
+    }
+
+    public String getIdCartao() {
+        return idCartao;
+    }
+
+    public void setIdCartao(String idCartao) {
+        this.idCartao = idCartao;
     }
 }
