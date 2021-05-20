@@ -67,4 +67,20 @@ public class Proposta {
     public void setIdCartao(String idCartao) {
         this.idCartao = idCartao;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public BigDecimal getSalario() {
+        return salario;
+    }
+
+    public StatusProposta getStatusProposta() {
+        return statusProposta;
+    }
 }

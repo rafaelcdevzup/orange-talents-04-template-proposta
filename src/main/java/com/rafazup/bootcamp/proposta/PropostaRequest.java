@@ -38,6 +38,15 @@ public class PropostaRequest {
         this.statusProposta = statusProposta;
     }
 
+    public PropostaRequest(Proposta entidade) {
+        this.documento = entidade.getDocumento();
+        this.email = entidade.getEmail();
+        this.endereco = entidade.getEndereco();
+        this.nome = entidade.getNome();
+        this.salario = entidade.getSalario();
+        this.statusProposta = entidade.getStatusProposta();
+    }
+    
     public Proposta toModel() {
         return new Proposta(this.documento,this.email,this.nome,this.endereco,this.salario, this.statusProposta);
     }
