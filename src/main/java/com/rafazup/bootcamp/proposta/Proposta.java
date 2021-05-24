@@ -2,6 +2,7 @@ package com.rafazup.bootcamp.proposta;
 
 import java.math.BigDecimal;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,7 +10,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.rafazup.bootcamp.cartao.Cartao;
 
 @Entity
 @Table(name = "tb_proposta")
@@ -26,8 +30,8 @@ public class Proposta {
     private BigDecimal salario;
     @Enumerated(EnumType.STRING)
     private StatusProposta statusProposta;
-    @Column(unique = true)
-    private String idCartao;
+    @OneToOne(cascade = CascadeType.MERGE)
+    private Cartao cartao;
 
     @Deprecated
     public Proposta() {
@@ -60,12 +64,12 @@ public class Proposta {
         this.statusProposta = statusProposta;
     }
 
-    public String getIdCartao() {
-        return idCartao;
+    public Cartao getCartao() {
+        return cartao;
     }
 
-    public void setIdCartao(String idCartao) {
-        this.idCartao = idCartao;
+    public void setCartao(Cartao cartao) {
+        this.cartao = cartao;
     }
 
     public String getEmail() {

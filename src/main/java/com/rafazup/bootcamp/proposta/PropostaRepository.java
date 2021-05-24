@@ -12,5 +12,5 @@ public interface PropostaRepository extends JpaRepository<Proposta, Long> {
     //Optional<Proposta> findByDocumento(String documento);
     boolean existsByDocumento(String documento);
     //tentativa sem declaração de query
-    List<Proposta> findByIdCartaoIsNullAndStatusProposta(@NonNull StatusProposta statusProposta);
+    List<Proposta> findByCartaoIsNullAndStatusProposta(@NonNull StatusProposta statusProposta);
 }

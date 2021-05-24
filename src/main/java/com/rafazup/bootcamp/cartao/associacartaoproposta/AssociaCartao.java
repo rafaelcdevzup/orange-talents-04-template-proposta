@@ -32,16 +32,16 @@ public class AssociaCartao {
   public void associarUmCartao() {
     logger.info("Verificação para associar cartão a proposta");
     List<Proposta> propostasParaSalvar =
-        propostaRepository.findByIdCartaoIsNullAndStatusProposta(StatusProposta.ELEGIVEL).parallelStream()
+        propostaRepository.findByCartaoIsNullAndStatusProposta(StatusProposta.ELEGIVEL).parallelStream()
             .peek(propostaAssocia -> {
                   try {
                     CartaoResponse cartao = associaCartaoClient.getCartao(propostaAssocia.getId());
-                    propostaAssocia.setIdCartao(cartao.getId());
+                    propostaAssocia.setCartao(cartao.toModel(propostaAssocia));
                     logger.info("Proposta id={} proposta associada", propostaAssocia.getId());
                   } catch (FeignException e) {
                     logger.info("Proposta id={} proposta sem cartão", propostaAssocia.getId());
                   }
-                }).collect(Collectors.filtering(proposta -> proposta.getIdCartao() != null, Collectors.toList()));
+                }).collect(Collectors.filtering(proposta -> proposta.getCartao() != null, Collectors.toList()));
     propostaRepository.saveAll(propostasParaSalvar);
   }
 }

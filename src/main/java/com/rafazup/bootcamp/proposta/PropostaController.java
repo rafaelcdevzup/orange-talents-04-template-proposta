@@ -61,9 +61,9 @@ public class PropostaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PropostaRequest> buscaProposta(@PathVariable Long id) {
+    public ResponseEntity<PropostaResponse> buscaProposta(@PathVariable Long id) {
         Optional<Proposta> proposta = propostaRepository.findById(id);
         proposta.orElseThrow(() -> new ResourceNotFoundException("ID não encontrado " + id));
-        return ResponseEntity.ok().body(new PropostaRequest(proposta.get()));
+        return ResponseEntity.ok().body(new PropostaResponse(proposta.get()));
     }
 }
