@@ -4,6 +4,8 @@ import java.time.Instant;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,6 +24,8 @@ public class Cartao {
     private String titular;
     @OneToOne(mappedBy = "cartao", cascade = CascadeType.ALL)
     private Proposta proposta;
+    @Enumerated(EnumType.STRING)
+    private StatusCartao status = StatusCartao.ATIVO;
 
     @Deprecated
     public Cartao(){
@@ -32,6 +36,13 @@ public class Cartao {
         this.emissao = emissao;
         this.titular = titular;
         this.proposta = proposta;
+    }
+
+    public Boolean bloquear() {
+        if (status == StatusCartao.BLOQUEADO) 
+        return false;
+        status = StatusCartao.BLOQUEADO;
+        return true;
     }
 
     public Long getId() {
@@ -48,5 +59,5 @@ public class Cartao {
 
     public Proposta getProposta() {
         return proposta;
-    }
+    }    
 }
